@@ -50,8 +50,40 @@ def rotateLeft(arr, n):
 def printArray(arr):
     print(str(arr[0]) + "\n" + str(arr[1]) + "\n" + str(arr[2]) + "\n")
 
-ex = array([[1,3,4],[2,2,2],[5,9,0]])
-printArray(ex)
-out = rotateLeft(ex, 1)
-printArray(out)
+def main():
+    blank_array = [["" for i in range(3)] for i in range(3)]
+    flag = False # check to break 
+    user_input = input("Enter 9 numbers (single digits) to be made into a 2d array ")
+    for i in range(len(user_input)):
+        for j in range(len(blank_array)):
+            for k in range(len(blank_array[j])):
+                if blank_array[j][k] == "":
+                    blank_array[j][k] = int(user_input[i])
+                    flag = True
+                    break
+            if flag:
+                flag = False
+                break
 
+    user_input_rotate = int(input("Enter the number of rotations left to be done on the array "))
+    
+    
+    print("Your starting array:")
+    printArray(blank_array)
+    print("Your rotated array after rotating left by {0} steps:".format(str(user_input_rotate)))
+    rotated_array = rotateLeft(blank_array, user_input_rotate)
+    printArray(rotated_array)
+
+ex = array([[1,3,4],[2,2,2],[5,9,0]])
+
+# print("Example array:")
+# printArray(ex)
+# out = rotateLeft(ex, 1)
+# print("After one step rotation left:")
+# printArray(out)
+
+print("example: input 123456789 creates an array of\n")
+printArray([[1,2,3],[4,5,6],[7,8,9]])
+
+while True:
+    main()
